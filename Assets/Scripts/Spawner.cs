@@ -3,18 +3,18 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private GameObject _prefab;
-
+    
     public Cube SpawnObject(Vector3 position, float sizeCoefficient = 1f, float chanceSurvival = 100f)
     {
-        GameObject newObject = Instantiate(_prefab, position, Quaternion.identity, transform);
-        Cube cube = newObject.GetComponent<Cube>();
+        const int MaximumChance = 100;
 
-        if (cube == null)
-        {
-            cube = newObject.AddComponent<Cube>();
-        }
+        GameObject selectedGameobject = Instantiate(_prefab, transform);
+        selectedGameobject.transform.position = position;
 
-        cube.Initialize(100, chanceSurvival, sizeCoefficient);
-        return cube;
+        Cube explodingObject = selectedGameobject.AddComponent<Cube>();
+        chanceSurvival = chanceSurvival > 0 ? chanceSurvival : MaximumChance;
+
+        explodingObject.Initialize(MaximumChance, chanceSurvival, sizeCoefficient);
+        return explodingObject;
     }
 }

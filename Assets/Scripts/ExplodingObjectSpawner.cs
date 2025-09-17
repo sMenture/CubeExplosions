@@ -7,8 +7,6 @@ public class ExplodingObjectSpawner : MonoBehaviour
     [SerializeField] private Exploder _exploder;
     [SerializeField] private InputReader _inputMouseReader;
 
-    [SerializeField] private GameObject _prefab;
-
     private List<Cube> _explodingObject = new List<Cube>();
     private int _explosionCountSpawn = 5;
 
@@ -53,7 +51,7 @@ public class ExplodingObjectSpawner : MonoBehaviour
 
     private void CreateNewExplodingObject(Vector3 spawnPosition, float sizeCoefficient = 1, float chanceSurvival = -1)
     {
-        _spawner.SpawnObject(spawnPosition, sizeCoefficient, chanceSurvival);
+        _explodingObject.Add(_spawner.SpawnObject(spawnPosition, sizeCoefficient, chanceSurvival));
     }
 
     private void DestroyExplodingObject(Cube explodingObject)
