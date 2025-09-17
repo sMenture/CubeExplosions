@@ -1066,6 +1066,7 @@ GameObject:
   - component: {fileID: 2028057823}
   - component: {fileID: 2028057822}
   - component: {fileID: 2028057824}
+  - component: {fileID: 2028057825}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -1176,9 +1177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ef39a3f2f45fd449f9e30b4c96152d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawner: {fileID: 2028057825}
   _exploder: {fileID: 2028057824}
   _inputMouseReader: {fileID: 2028057823}
-  _prefab: {fileID: 6297298831839519016, guid: 51b76ab44f017ec4d814cab16afcedff, type: 3}
 --- !u!114 &2028057823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1191,7 +1192,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec3a9c3952461c4e8d8bcec0afe7829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectContoller: {fileID: 2028057822}
 --- !u!114 &2028057824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1206,6 +1206,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _explosionPower: 300
   _explosionRange: 30
+--- !u!114 &2028057825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028057817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae74deb700763843b8518d564c592c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 6297298831839519016, guid: 51b76ab44f017ec4d814cab16afcedff, type: 3}
 --- !u!1 &2049195658
 GameObject:
   m_ObjectHideFlags: 0
