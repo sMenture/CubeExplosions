@@ -20,7 +20,8 @@ public class Exploder : MonoBehaviour
                 continue;
 
             float calculatedDistance = Vector3.Distance(obj.transform.position, position);
-            Vector3 direction = obj.transform.position - position * calculatedDistance;
+            Vector3 direction = obj.transform.position - position;
+            direction /= calculatedDistance;
 
             obj.attachedRigidbody.AddForce(direction.normalized * calculatedPower * calculatedDistance);
         }
