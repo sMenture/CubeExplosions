@@ -43,7 +43,7 @@ public class ExplodingObjectSpawner : MonoBehaviour
                 CreateNewExplodingObject(cube.transform.position, newSizeCoefficient, cube.ChanceSurvival);
             }
 
-            _exploder.Explosion(gameObject.transform.position);
+            _exploder.Explosion(gameObject.transform.position, gameObject.transform.localScale);
         }
 
         DestroyExplodingObject(cube);

@@ -5,22 +5,24 @@ public class Exploder : MonoBehaviour
     [SerializeField] private int _explosionPower = 10;
     [SerializeField] private int _explosionRange = 5;
 
-    public void Explosion(Vector3 positon)
+    public void Explosion(Vector3 position, Vector3 scale)
     {
-        float localMagnitudeScale = transform.localScale.magnitude;
+        float scaleMagnitude = scale.magnitude;
 
-        Collider[] nearestObjects = Physics.OverlapSphere(positon, _explosionRange * localMagnitudeScale);
+        float calculatedRange = _explosionRange / scaleMagnitude;
+        float calculatedPower = _explosionPower / scaleMagnitude;
+
+        Collider[] nearestObjects = Physics.OverlapSphere(position, calculatedRange);
 
         foreach (var obj in nearestObjects)
         {
             if (obj.attachedRigidbody == null)
                 continue;
 
-            Vector3 direction = obj.transform.position - positon;
-            float fixedPowerByScale = _explosionPower * transform.localScale.magnitude;
+            float calculatedDistance = Vector3.Distance(obj.transform.position, position);
+            Vector3 direction = obj.transform.position - position * calculatedDistance;
 
-            obj.attachedRigidbody.AddForce(direction.normalized * fixedPowerByScale);
+            obj.attachedRigidbody.AddForce(direction.normalized * calculatedPower * calculatedDistance);
         }
     }
-
 }
