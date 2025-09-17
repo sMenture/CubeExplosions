@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 public class Exploder : MonoBehaviour
@@ -8,7 +7,9 @@ public class Exploder : MonoBehaviour
 
     public void Explosion(Vector3 positon)
     {
-        Collider[] nearestObjects = Physics.OverlapSphere(positon, _explosionRange);
+        float localMagnitudeScale = transform.localScale.magnitude;
+
+        Collider[] nearestObjects = Physics.OverlapSphere(positon, _explosionRange * localMagnitudeScale);
 
         foreach (var obj in nearestObjects)
         {
@@ -16,7 +17,7 @@ public class Exploder : MonoBehaviour
                 continue;
 
             Vector3 direction = obj.transform.position - positon;
-            float fixedPowerByScale = _explosionPower / transform.localScale.magnitude;
+            float fixedPowerByScale = _explosionPower * transform.localScale.magnitude;
 
             obj.attachedRigidbody.AddForce(direction.normalized * fixedPowerByScale);
         }

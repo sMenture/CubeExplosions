@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
+    private ColorGenerator _colorGenerator = new ColorGenerator();
+
     private int _maximumChance = 100;
 
     public float SizeCoefficient { private set; get; }
@@ -15,7 +17,7 @@ public class Cube : MonoBehaviour
 
         transform.localScale = Vector3.one * SizeCoefficient;
 
-        GenerateRandomColor();
+        GetComponent<MeshRenderer>().material.color = _colorGenerator.GenerateRandomColor();
     }
 
     public void CalculateNewChanceSurvival()
@@ -33,18 +35,5 @@ public class Cube : MonoBehaviour
     private int RandomValue(int min, int max)
     {
         return Random.Range(min, max + 1);
-    }
-
-    private void GenerateRandomColor()
-    {
-        const int RGBMaxValue = 255;
-
-        MeshRenderer meshRender = GetComponent<MeshRenderer>();
-
-        float r = (float)RandomValue(0, RGBMaxValue) / RGBMaxValue;
-        float g = (float)RandomValue(0, RGBMaxValue) / RGBMaxValue;
-        float b = (float)RandomValue(0, RGBMaxValue) / RGBMaxValue;
-
-        meshRender.material.color = new Color(r, g, b);
     }
 }
