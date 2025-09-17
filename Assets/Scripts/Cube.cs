@@ -1,21 +1,19 @@
 using UnityEngine;
 
-public class ExplodingObject
+public class Cube : MonoBehaviour
 {
     private int _maximumChance = 100;
 
-    public float SizeCoefficient { set; get; }
-    public float ChanceSurvival { set; get; }
-    public GameObject GameObject { set; get; }
+    public float SizeCoefficient { private set; get; }
+    public float ChanceSurvival {  private set; get; }
 
-    public void Initialize(GameObject gameObject, int maximumChance, float chanceSurvival, float sizeCoefficient)
+    public void Initialize(int maximumChance, float chanceSurvival, float sizeCoefficient)
     {
         _maximumChance = maximumChance;
         SizeCoefficient = sizeCoefficient;
         ChanceSurvival = chanceSurvival;
-        GameObject = gameObject;
 
-        GameObject.transform.localScale = Vector3.one * SizeCoefficient;
+        transform.localScale = Vector3.one * SizeCoefficient;
 
         GenerateRandomColor();
     }
@@ -41,7 +39,7 @@ public class ExplodingObject
     {
         const int RGBMaxValue = 255;
 
-        MeshRenderer meshRender = GameObject.GetComponent<MeshRenderer>();
+        MeshRenderer meshRender = GetComponent<MeshRenderer>();
 
         float r = (float)RandomValue(0, RGBMaxValue) / RGBMaxValue;
         float g = (float)RandomValue(0, RGBMaxValue) / RGBMaxValue;
